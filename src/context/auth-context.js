@@ -1,87 +1,145 @@
-import React from 'react';
-import authService from '../services/auth-service';
+import React from "react";
+import authService from "../services/auth-service";
 
 const { Consumer, Provider } = React.createContext();
-
 
 class AuthProvider extends React.Component {
   state = {
     isLoggedIn: false,
+    isAdmin: false,
     isLoading: true,
-    user: null
-  }
+    user: null,
+  };
 
-  componentDidMount () {
-    authService.me()
-     .then((user) => this.setState({ isLoggedIn: true, user: user, isLoading: false }))
-     .catch((err) => this.setState({ isLoggedIn: false, user: null, isLoading: false }));
-  }
-
-  signup = (username, password) => {
-    authService.signup( username, password )
-      .then((user) => this.setState({ isLoggedIn: true, user }) )
-      .catch((err) => {
-        this.setState({ isLoggedIn: false, user: null });
+  componentDidMount() {
+    authService
+      .me()
+      .then((user) => {
+        if (user.role === "client") {
+          this.setState({
+            user,
+            isLoggedIn: true,
+            isAdmin: false,
+            isLoading: false,
+          });
+        } else {
+          this.setState({
+            user,
+            isLoggedIn: true,
+            isAdmin: true,
+            isLoading: false,
+          });
+        }
       })
+      .catch((err) => {
+        this.setState({ isLoggedIn: false, user: null, isLoading: false });
+        console.log("auth-context - DidMount error => ", err);
+      });
   }
 
-  login = (username, password) => {
-    authService.login( username, password )
-      .then((user) => this.setState({ isLoggedIn: true, user }))
-      .catch((err) => {
-        this.setState({ isLoggedIn: false, user: null });
+  signup = (
+    role,
+    firstName,
+    lastName,
+    email,
+    password,
+    phone,
+    street,
+    city,
+    postCode,
+    profilePic,
+    Brand
+  ) => {
+    authService
+      .signup(
+        role,
+        firstName,
+        lastName,
+        email,
+        password,
+        phone,
+        street,
+        city,
+        postCode,
+        profilePic,
+        Brand
+      )
+      .then((user) => {
+        if (user.role === "client") {
+          this.setState({ isLoggedIn: true, user, isAdmin: false });
+        } else {
+          this.setState({ isLoggedIn: true, user, isAdmin: true });
+        }
       })
-  }
+
+      .catch((err) => {
+        console.log("auth-context - signup error", err);
+        this.setState({ isLoggedIn: false, user: null });
+      });
+  };
+
+  login = (email, password) => {
+    authService
+      .login(email, password)
+      .then((user) => {
+        if (user.role === "client") {
+          this.setState({ isLoggedIn: true, user, isAdmin: false });
+        } else {
+          this.setState({ isLoggedIn: true, user, isAdmin: true });
+        }
+      })
+
+      .catch((err) => {
+        console.log("auth-context - login error => ", err);
+        this.setState({ isLoggedIn: false, user: null });
+      });
+  };
 
   logout = () => {
-    authService.logout()
+    authService
+      .logout()
       .then(() => this.setState({ isLoggedIn: false, user: null }))
-      .catch((err) => console.log(err));
-  }
-
+      .catch((err) => console.log("auth-context - logout error",err));
+  };
 
   render() {
-    const { isLoggedIn, isLoading, user } = this.state;
+    const { isLoggedIn, isAdmin, isLoading, user } = this.state;
     const { signup, login, logout } = this;
 
     if (isLoading) return <p>Loading</p>;
 
-    return(
-      <Provider value={{ isLoggedIn, isLoading, user, signup, login, logout }}  >
+    return (
+      <Provider value={{ isLoggedIn, isAdmin, isLoading, user, signup, login, logout }}>
         {this.props.children}
       </Provider>
-    )
+    );
   }
-
 }
-
 
 // HOC that converts regular component into a Consumer
 const withAuth = (WrappedComponent) => {
-  
   return function (props) {
-      return(
-        <Consumer>
-          { (value) => {
-            const { isLoggedIn, isLoading, user, signup, login, logout } = value;
+    return (
+      <Consumer>
+        {(value) => {
+          const { isLoggedIn, isAdmin, isLoading, user, signup, login, logout } = value;
 
-            return (
-              <WrappedComponent 
-                isLoggedIn={isLoggedIn} 
-                isLoading={isLoading} 
-                user={user} 
-                signup={signup} 
-                login={login} 
-                logout={logout}
-                {...props}
-              />
-            )
+          return (
+            <WrappedComponent
+              isLoggedIn={isLoggedIn}
+              isAdmin={isAdmin}
+              isLoading={isLoading}
+              user={user}
+              signup={signup}
+              login={login}
+              logout={logout}
+              {...props}
+            />
+          );
+        }}
+      </Consumer>
+    );
+  };
+};
 
-          } }
-        </Consumer>
-        )
-    }
-}
-
-
-export { AuthProvider, withAuth }
+export { AuthProvider, withAuth };

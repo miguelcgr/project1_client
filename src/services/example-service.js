@@ -19,6 +19,7 @@ class ExampleService {
     return pr;
   };
 
+
   getOne = (id) => {
     const pr = this.api.get(`/example/${id}`);
 

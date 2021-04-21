@@ -4,15 +4,30 @@ import { withAuth } from './../../context/auth-context';
 
 class Navbar extends Component {
   render() {
-    // const { user, logout, isLoggedin } = this.props;
+     const { user, logout, isLoggedin, isAdmin } = this.props;
+     
     return (
+      
       <nav className="navbar">
         <Link to={'/'} id='home-btn'>
           <h4>Home</h4>
         </Link>
         {this.props.isLoggedIn ? (
           <>
-            <p>username: {this.props.user && this.props.user.username}</p>
+          {isAdmin ? (
+              <>
+               <p>SELLER SITE___  <Link
+                  to={"/mystore/home"}
+                  id="mystore-btn"
+                  className="nav-link"
+                >
+                  control panel
+                </Link></p>
+              </>
+            ) : (
+              <> <p>CLIENT SITE____</p> </>
+            )}
+            <p>username:___ {this.props.user.name.firstName}</p>
             <button onClick={this.props.logout}>Logout</button>
           </>
         ) : (
