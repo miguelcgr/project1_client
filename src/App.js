@@ -7,6 +7,7 @@ import Home from './pages-client/Home/Home';
 import Signup from './pages-client/Signup/Signup';
 import Login from './pages-client/Login/Login';
 import Private from './pages-client/Private/Private';
+import Cart from './pages-client/Cart/Cart'
 
 // Pages - Seller
 
@@ -28,7 +29,11 @@ class App extends Component {
 
         <Switch>
         {/* client routes */}
-
+           <ClientPrivateRoute
+           exact
+           path="/cart"
+           component={Cart}
+            />
 
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />
