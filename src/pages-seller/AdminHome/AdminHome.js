@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 
-class AdminHome extends Component {
-    render() {
-        return (
-            <div>
-                helooooooooooooooooooooooooooooooooooooo
-                <p>this is the AdminHome component</p>
-            </div>
-        )
-    }
+import productService from "./../../services/product-service";
+
+
+
+ const AdminHome = () => {
+    return (
+        <div>
+            this is the admin page, create products, edit products, delete products, edit profile
+        </div>
+    )
 }
 
 export default AdminHome;

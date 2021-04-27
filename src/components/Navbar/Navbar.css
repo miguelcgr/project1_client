@@ -1,0 +1,38 @@
+.navbar {
+    background-color: #686de0; 
+    padding: 0px 20px;
+    
+    color: black;
+    
+ 
+    margin: 0 auto;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.nav-link {
+     margin: 0 1.5em;
+    color: black;
+    text-decoration: none;
+}
+.nav-link:hover{
+
+    color: white;
+    transition: all 0.2s ease;
+
+}
+.logo{
+    height: 1.5em;
+    margin: 0 5px;
+}
+.logo:hover{
+
+    color: white;
+    transition: all 0.2s ease;
+}
+
+button{
+   
+}

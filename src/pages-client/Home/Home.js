@@ -5,17 +5,18 @@ import authService from "./../../services/auth-service";
 import "./Home.css";
 
 const Home = () => {
+
   const [products, setProducts] = useState([]);
 
-  const [cart, setCart] = useState([]);
+  //const [cart, setCart] = useState([]);
 
   useEffect(() => {
     loadAllProducts();
   }, []);
 
-  useEffect(() => {
-    loadCurrentUser();
-  }, []);
+  // useEffect(() => {
+  //   loadCurrentUser();
+  // }, []);
 
   const loadAllProducts = () => {
     productService
@@ -28,29 +29,29 @@ const Home = () => {
 
   const handleAddClick = async (productId) => {
     await userService.addToCart(productId);
+    console.log('estamos en home.js y hemos handleAddCLick(), este es el curent cart ahora')
     //loadCurrentUser();
   };
 
-  const handleDeleteClick = (productId) => {
-    userService.deleteFromCart(productId);
-  };
+  // const handleDeleteClick = (productId) => {
+  //   userService.deleteFromCart(productId);
+  // };
 
-  const loadCurrentUser = () => {
-    authService.me()
-    .then((response) => {
-      const id = response._id;
-      console.log("id", id);
-      userService.getUserById(id).then((user) => {
-        setCart(user.currentCart);
-      });
-    })
-    .catch((err)=> console.log('home.js > loadcurrentuser',err))
-  };
-  console.log("cart", cart);
-  console.log('cart.length', cart.length)
+  // const loadCurrentUser = () => {
+  //   authService.me()
+  //   .then((response) => {
+  //     const id = response._id;
+  //     console.log("id", id);
+  //     userService.getUserById(id).then((user) => {
+  //       setCart(user.currentCart);
+  //     });
+  //   })
+  //   .catch((err)=> console.log('home.js > loadcurrentuser',err))
+  // };
+
   return (
     <body>
-      <div className="wrapper">
+      <div className="cards">
         {products.map((product) => (
           <div className="product-card">
             <h2>{product.name}</h2>
@@ -66,30 +67,7 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <div>
-        your cart
-        {cart.map((item) => (
-          <div key={item.productId._id}>
-            <div className="product-card">
-              <h2>
-                {item.productId.name} - {item.quantity}
-              </h2>
-              <img
-                className="product-card"
-                src={item.productId.picture}
-                alt="product"
-              />
-              <h3>{item.productId.price} €</h3>
-              <button
-                className="delete-btn"
-                onClick={() => handleDeleteClick(item.productId._id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+
     </body>
   );
 };
