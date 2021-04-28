@@ -3,13 +3,19 @@ import axios from "axios";
 
 class ProductService {
   constructor() {
-    // this.api  is a reusable axios request base containing the base url (baseURL)
-    // of the API and the Headers options ( `withCredentials: true` )
+
     this.productApi = axios.create({
-      baseURL: "http://localhost:5000/api",
+      baseURL: `${process.env.REACT_APP_API_URL}/api/products`,
       withCredentials: true,
     });
   }
+  // constructor() {
+
+  //   this.productApi = axios.create({
+  //     baseURL: "http://localhost:5000/api/products",
+  //     withCredentials: true,
+  //   });
+  // }
                                      // repasar esto, brandId, debería ser brand name?
   createProduct(name, brandId, price, materials, picture, stock ){
       const pr = this.productApi
@@ -27,7 +33,7 @@ class ProductService {
 
   getAllProducts() {
     const pr = this.productApi
-    .get("/products")
+    .get("/")
     .then((response) => response.data)
     .catch((err) => console.log('product-service ! - getAllProducts error', err))
 
@@ -63,7 +69,7 @@ class ProductService {
 
 
   deleteOne = (id) => {
-    const pr = this.api.delete(`/product/${id}`);
+    const pr = this.api.delete(`/${id}`);
 
     return pr;
   };

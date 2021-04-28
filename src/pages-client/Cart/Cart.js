@@ -12,13 +12,13 @@ const Cart = () => {
   useEffect(() => {
     loadCurrentUser();
     
-  }, [cart]);
+  }, []);  //poner aqui cart?????
     
   useEffect(() => {
  
     totalPrice();
 
-  }, [cart]);
+  }, []);    //poner aqui cart?????
 
 
   const loadCurrentUser = () => {
