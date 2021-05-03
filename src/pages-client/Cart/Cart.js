@@ -3,16 +3,15 @@ import userService from "../../services/user-service";
 import authService from "./../../services/auth-service";
 import "./Cart.css";
 
-const Cart = () => {
-  const [cart, setCart] = useState([]);
+const Cart = ({setUpdate, update, cart}) => {
 
   const [price, setPrice] = useState();
 
   
-  useEffect(() => {
-    loadCurrentUser();
+  // useEffect(() => {
+  //   loadCurrentUser();
     
-  }, []);  //poner aqui cart?????
+  // }, []);  //poner aqui cart?????
     
   useEffect(() => {
  
@@ -21,18 +20,25 @@ const Cart = () => {
   }, []);    //poner aqui cart?????
 
 
-  const loadCurrentUser = () => {
-    authService.me().then((response) => {
-      const id = response._id;
+  // const loadCurrentUser = () => {
+  //   authService.me().then((response) => {
+  //     const id = response._id;
     
-      userService.getUserById(id).then((user) => {
-        setCart(user.currentCart);
-      });
-    });
-  };
+  //     userService.getUserById(id).then((user) => {
+  //       setCart(user.currentCart);
+  //     });
+  //   });
+  // };
 
-  const handleDeleteClick = (productId) => {
-    userService.deleteFromCart(productId);
+  const handleDeleteClick = async (productId) => {
+try {
+  
+  await userService.deleteFromCart(productId);
+
+} catch (error) {
+  console.log(error)
+} 
+setUpdate(!update)
   };
   
 

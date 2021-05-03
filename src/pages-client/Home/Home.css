@@ -3,12 +3,12 @@
 
 body{
     font-family: 'Comfortaa', Arial, sans-serif;
-    background-color: rgb(245, 239, 233);
+    background-color: #c0fefc;
     
 } 
 
  .cards {
-    background-color: rgb(245, 239, 233);
+    background-color:#c0fefc;
     display: flex;
     flex-wrap:wrap;
     flex-direction: row;
@@ -57,7 +57,7 @@ button {
    }
  
     .product-card {
-        flex: 0 1 calc(95% - 1em);
+        flex: 0 1 calc(90% - 1em);
     }
 }
 @media screen and (min-width: 40em) {

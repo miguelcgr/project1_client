@@ -2,32 +2,35 @@ import axios from "axios";
 
 
 class ProductService {
-  constructor() {
-
-    this.productApi = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/api/products`,
-      withCredentials: true,
-    });
-  }
   // constructor() {
 
   //   this.productApi = axios.create({
-  //     baseURL: "http://localhost:5000/api/products",
+  //     baseURL: `${process.env.REACT_APP_API_URL}/api/products`,
   //     withCredentials: true,
   //   });
   // }
-                                     // repasar esto, brandId, debería ser brand name?
-  createProduct(name, brandId, price, materials, picture, stock ){
+  constructor() {
+
+    this.productApi = axios.create({
+      baseURL: "http://localhost:5000/api/products",
+      withCredentials: true,
+    });
+  }
+
+  createProduct(name, price, materials, picture, stock, category, description ){
       const pr = this.productApi
       .post("/create",{
           name,
-          brandId,
+          //brandId,
           price,
           materials,
           picture,
-          stock
+          stock,
+          category,
+          description
       })
       .then((response) => response.data)
+      .then((response)=>console.log('product service responde',response))
       .catch((err) => console.log('product-service - createProduct error', err))
   };
 
@@ -50,15 +53,16 @@ class ProductService {
     return pr;
   };
 
-  updateProduct(id, name, brandId, price, materials, picture, stock ) {
+  updateProduct(id, name, price, materials, picture, stock, category, description ) {
     const pr = this.productApi
       .post(`/update/${id}`, {
         name, 
-        brandId, 
         price, 
         materials, 
         picture, 
-        stock 
+        stock,
+        category,
+        description 
       })
       .then((response) => response.data)
       .catch((err) =>

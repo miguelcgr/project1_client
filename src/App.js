@@ -25,12 +25,17 @@ import ClientPrivateRoute from "./components/PrivateRoute/ClientPrivateRoute";
 import AdminPrivateRoute from "./components/PrivateRoute/AdminPrivateRoute";
 
 const App = () => {
-  const [cart, setCart] = useState([]);
 
+  const [cart, setCart] = useState([]);
+const [update, setUpdate] = useState(true);
 
   useEffect(() => {
     loadCurrentUser();
-  }, []);
+  }, [update]);
+
+
+
+
 
   const loadCurrentUser = () => {
     authService
@@ -52,10 +57,15 @@ const App = () => {
       <Switch>
         {/* client routes */}
 
-        <ClientPrivateRoute exact path="/cart" component={Cart} />
+        <ClientPrivateRoute exact path="/cart" component={()=><Cart cart={cart} update={update} setUpdate={setUpdate}/>} />
+
+        
+
         <AnonRoute exact path="/login" component={Login} />
         <AnonRoute exact path="/signup" component={Signup} />
-        <Route exact path="/" component={Home} cart={cart} />
+        <Route exact path="/">
+          <Home cart={cart} update={update} setUpdate={setUpdate} />
+        </Route>
         {/* <ClientPrivateRoute exact path="/checkout" component={Checkout} />
           <ClientPrivateRoute exact path="/profile/:userId" component={Profile} />
 

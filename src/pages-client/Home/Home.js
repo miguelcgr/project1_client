@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import userService from "../../services/user-service";
 import productService from "./../../services/product-service";
-import authService from "./../../services/auth-service";
+
 import "./Home.css";
 
-const Home = () => {
+const Home = ( {cart, setUpdate, update} ) => {
 
   const [products, setProducts] = useState([]);
 
@@ -28,7 +28,12 @@ const Home = () => {
   };
 
   const handleAddClick = async (productId) => {
-    await userService.addToCart(productId);
+    try {
+      await userService.addToCart(productId);
+    } catch (error) {
+      console.log(error)
+    }
+    setUpdate(!update);
     console.log('estamos en home.js y hemos handleAddCLick(), este es el curent cart ahora')
     //loadCurrentUser();
   };

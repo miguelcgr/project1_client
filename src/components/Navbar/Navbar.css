@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #686de0; 
+    background-color: #77acf1; 
     padding: 0px 20px;
     
     color: black;
@@ -21,6 +21,8 @@
 
     color: white;
     transition: all 0.2s ease;
+    
+    
 
 }
 .logo{
@@ -54,5 +56,9 @@ button{
 @media screen and (min-width: 60em) {
   
    }
-     
-
+   .navbar {
+    background-color: #77acf1;
+    overflow: hidden;
+  }
+  
+  

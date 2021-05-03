@@ -60,13 +60,8 @@ const Navbar = (props) => {
               </h4>
             </Link>
           ) : (
-          
-            <img
-                  className="logo"
-                  src="https://img.icons8.com/pastel-glyph/452/fast-cart.png"
-                  alt="cart-logo"
-                /> 
-                
+    
+           <></>                
                 
           )}
 
