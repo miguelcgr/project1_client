@@ -1,21 +1,25 @@
 .navbar {
+   position:sticky;
+   top:0;
+   
+
     background-color: #77acf1; 
     padding: 0px 20px;
-    
     color: black;
-    
- 
     margin: 0 auto;
     text-align: center;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+
+
 }
 .nav-link {
      margin: 0 1.5em;
     color: black;
     text-decoration: none;
+   
 }
 .nav-link:hover{
 
@@ -35,30 +39,45 @@
     transition: all 0.2s ease;
 }
 
-button{
-   
-}
-
-
-
-@media screen and (max-width: 40em) {
-    .navbar{
+.logout-link {
+    text-decoration: none;
     display: flex;
-    justify-content: space-between;
-    }
-  
+
 }
-@media screen and (min-width: 40em) {
-    
+.logout {
+   background-color: #77acf1; 
+   color: black;
+   font-size:1em;
+   
+   margin: auto;
 }
- 
- 
-@media screen and (min-width: 60em) {
-  
-   }
-   .navbar {
-    background-color: #77acf1;
-    overflow: hidden;
-  }
-  
-  
+.logout:hover{
+
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.login{
+    background-color: #77acf1; 
+    color: black;
+    font-size:1em;
+    float: right;
+    text-align: center;
+    margin:auto;
+
+}
+.login-button{
+    color: black;
+    background-color: #77acf1; 
+    text-align: center;
+
+    margin: 0 1.5em;
+    color: black;
+    text-decoration: none;
+}
+.login-button:hover{
+
+    color: white;
+    transition: all 0.2s ease;
+}
+

@@ -4,10 +4,12 @@
 body{
     font-family: 'Comfortaa', Arial, sans-serif;
     background-color: #c0fefc;
+   
     
 } 
 
  .cards {
+   
     background-color:#c0fefc;
     display: flex;
     flex-wrap:wrap;
@@ -15,8 +17,7 @@ body{
     
 } 
  .product-card {
-    padding: 6px;
-    
+      
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin: 1rem 1em;
@@ -39,6 +40,7 @@ body{
 
 .product-img{
     width: 15em;
+
 }
 button {
     border: none;
@@ -57,7 +59,7 @@ button {
    }
  
     .product-card {
-        flex: 0 1 calc(90% - 1em);
+        flex: 0 1 calc(85% - 1em);
     }
 }
 @media screen and (min-width: 40em) {

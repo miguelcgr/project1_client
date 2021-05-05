@@ -71,7 +71,8 @@ class Create extends Component {
       description,
     } = this.state;
     return (
-      <div>
+      <div className='create-card'>
+          <h1 className= 'create-text' >Add product</h1>
         <form className="form" onSubmit={this.handleFormSubmit}>
           <label>Product name:</label>
           <input
@@ -127,7 +128,7 @@ class Create extends Component {
             onChange={this.handleChange}
           />
 
-          <input type="submit" value="Create Product" />
+          <button className='create-btn' type="submit" value="Create Product">Add Product</button>
         </form>
       </div>
     );

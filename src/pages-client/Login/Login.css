@@ -1,0 +1,88 @@
+
+* {
+    box-sizing: inherit;
+  }
+  html {
+    box-sizing: border-box;
+  }
+  body {
+    
+   
+    line-height: 1.5;
+    margin: 0;
+    min-block-size: 100vh;
+    padding: 5vmin;
+  }
+
+
+.align{
+    margin: 10rem auto;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   min-height: 100vh;
+   
+}
+
+
+
+
+.login-text{
+    background-color:#77acf1; 
+    border-top-left-radius: 1.25em;
+    border-top-right-radius: 1.25em;
+    
+    padding: 1.25em 1.625em;
+    gap: 0.875em;
+    width: 20rem;
+    margin-bottom: 0;
+}
+
+
+
+form{
+    margin-top: 0;
+   width: 20rem;
+    background-color: #fff;
+    border-bottom-left-radius: 1.25em;
+    border-bottom-right-radius: 1.25em;
+    color: #777;
+    display: grid;
+    gap: 0.875em;
+    padding: 1.25em 1.625em;    
+
+/*     
+    width: 40em;
+    display:flex;
+    flex-direction: column;
+    
+    align-items: center; */
+    
+}
+ 
+
+/* form input{
+    
+    margin: 0.5em auto;
+    font-size: large;
+} */
+input {
+    background-color: rgb(230, 217, 217);
+    border: none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s;
+  }
+  input:hover{
+    color: white;
+}
+ button{
+     color:black;
+     background-color: blue;
+ }
+ button:hover{
+     color:#77acf1; 
+     font-weight: 800;
+     
+ }

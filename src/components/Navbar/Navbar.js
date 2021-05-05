@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { withAuth } from "./../../context/auth-context";
 import "./Navbar.css";
 
-import userService from "../../services/user-service";
-
-import authService from "./../../services/auth-service";
-
 const Navbar = (props) => {
   const { isAdmin, cart } = props;
 
@@ -65,16 +61,17 @@ const Navbar = (props) => {
                 
           )}
 
-          <button onClick={props.logout}>Logout</button>
+         <Link to='/' className='logout-link'> <button className='logout' onClick={props.logout}>Logout</button> </Link>
         </>
       ) : (
         <>
-          <Link to="/login">
-            <button className="navbar-button">Login</button>{" "}
+       
+          <Link to="/login" className="nav-link">
+            <h4>Login</h4>{" "}
           </Link>
           <br />
-          <Link to="/signup">
-            <button className="navbar-button">Sign Up</button>{" "}
+          <Link to="/signup" className="nav-link">
+            <h4>Sign Up</h4>{" "}
           </Link>
         </>
       )}

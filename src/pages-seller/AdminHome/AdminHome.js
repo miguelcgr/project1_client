@@ -1,17 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import Create from "./Create";
 
-import productService from "./../../services/product-service"
-import Create from './Create'
-
-
-
- const AdminHome = () => {
-    return (
-        <div>
-            this is the admin page, create products, edit products, delete products, edit profile
-            <Create />
-        </div>
-    )
-}
+const AdminHome = () => {
+  return (
+    <div>
+      <Create />
+    </div>
+  );
+};
 
 export default AdminHome;

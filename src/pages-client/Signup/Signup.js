@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { withAuth } from './../../context/auth-context';
+import { withAuth } from "./../../context/auth-context";
+import "./Signup.css";
 
 class Signup extends Component {
-  state = { 
+  state = {
     firstName: "",
     lastName: "",
     email: "",
@@ -16,22 +17,9 @@ class Signup extends Component {
     brand: "",
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    const {    
-    firstName,
-    lastName,
-    email,
-    password,
-    phone,
-    street,
-    city,
-    postCode,
-    profilePic,
-    brand,
-  } = this.state;
-    
-    this.props.signup(   
+    const {
       firstName,
       lastName,
       email,
@@ -41,16 +29,30 @@ class Signup extends Component {
       city,
       postCode,
       profilePic,
-      brand, );
+      brand,
+    } = this.state;
+
+    this.props.signup(
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+      street,
+      city,
+      postCode,
+      profilePic,
+      brand
+    );
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
   render() {
-    const {   
+    const {
       firstName,
       lastName,
       email,
@@ -60,19 +62,28 @@ class Signup extends Component {
       city,
       postCode,
       profilePic,
-      brand, 
+      brand,
     } = this.state;
     return (
-      <div>
-        <h1>Sign Up</h1>
+      <div className="main">
+        <h1 className="signup-text">Sign Up</h1>
 
-        <form onSubmit={this.handleFormSubmit}>
-
+        <form className='signup-form' onSubmit={this.handleFormSubmit}>
           <label>First Name:</label>
-          <input type="text" name="firstName" value={firstName} onChange={this.handleChange} />
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={this.handleChange}
+          />
 
           <label>Last Name:</label>
-          <input type="text" name="lastName" value={lastName} onChange={this.handleChange} />
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={this.handleChange}
+          />
 
           <label>Phone:</label>
           <input
@@ -100,7 +111,7 @@ class Signup extends Component {
 
           <label>Post code:</label>
           <input
-            type="number"
+            type="text"
             name="postCode"
             value={postCode}
             onChange={this.handleChange}
@@ -113,14 +124,13 @@ class Signup extends Component {
             value={profilePic}
             onChange={this.handleChange}
           />
-            <label>Brand name:</label>
+          <label>Brand name:</label>
           <input
             type="text"
             name="brand"
             value={brand}
             onChange={this.handleChange}
           />
-
 
           <label>Email:</label>
           <input
@@ -129,7 +139,7 @@ class Signup extends Component {
             value={email}
             onChange={this.handleChange}
           />
-            <label>Password:</label>
+          <label>Password:</label>
           <input
             type="password"
             name="password"
@@ -137,10 +147,9 @@ class Signup extends Component {
             onChange={this.handleChange}
           />
 
-
-          <input type="submit" value="Signup" />
+          <button type="submit" value="Signup">Sign up</button>
         </form>
-        
+
         <p>Already have account?</p>
         <Link to={"/login"}> Login</Link>
       </div>
@@ -148,10 +157,7 @@ class Signup extends Component {
   }
 }
 
-
-
 export default withAuth(Signup);
-
 
 // const EnhancedSignup = withAuth(Signup)
 // export default EnhancedSignup;

@@ -7,6 +7,24 @@ html, body {
 
 }
 
+.footer {
+   
+  background-color: #77acf1; 
+  color: black;
+  position: sticky;
+  bottom: 0;
+  height: 6vh;
+   
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer:hover {
+ height: 0;
+ color: transparent;
+}
+
 /* nav.navbar { 
   display: flex;
   padding: 0px 20px;

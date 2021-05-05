@@ -8,7 +8,9 @@ body{
       
 
 }
-
+.cart-wrap{
+    min-height: 100vh;
+}
 
 .item-card {
     
@@ -63,6 +65,13 @@ button {
 .checkout-btn{
     border: 1px solid gray;
 }
+.checkout-btn:hover{
+    border: 1px solid gray;
+    background-color:#77acf1; 
+    color: black;
+    font-weight: 800;
+}
+
 
 @media screen and (max-width: 50em) {
   
